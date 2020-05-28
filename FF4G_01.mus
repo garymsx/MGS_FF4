@@ -1,0 +1,129 @@
+;[gain=1.0 name=FF4_01 duration=300s fade=5s]
+#opll_mode 0
+#tempo 96
+#title { "Final Fantasy IVより プレリュード (C)SQUARE ENIX"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc {9=1000}
+;#alloc {c=1000}
+
+;1文字の英文字(A-Z)にマクロのオフセット番号を定義します。
+; a = 10と定義定義した場合場合、以下以下は*20と同意になる。
+; *a10
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset g = 210
+#macro_offset h = 220
+#macro_offset r = 230
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, 8f=8 }
+
+@e20={ 1, 0, feeedddcccbbba0=10. }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;* ハープ
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {40, 7,15, 0, 0, 0, 2, 4, 0, 1, 0, 0, 1
+             ,15, 4, 8, 8, 0, 2, 0, 1, 0, 1, 1}
+
+;* ストリングス
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v16 = {30, 6,15, 0, 0, 0, 1, 2, 1, 1, 0, 0, 0
+             , 6, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1}
+
+;1239ABCDEFGH r2
+
+9    @15 V13 O3 L16
+A    @15 V11 O3 L16 \1  r16
+B    @15 V9  O3 L16 \-1 r8
+9AB  [cdeg>]4 [c<ged]4 <
+9AB  [ab>ce]4 [aec<b]4 >
+9AB  [cdeg>]4 [c<ged]4 <
+9AB  [ab>ce]4 [aec<b]4
+9AB  [a>cfg]4 [agfc<]4
+9AB  [b>dga]4 [bagd<]4
+9AB  [a->ce-g]4 [a-ge-c<]4
+9AB  [b->dfa]4
+9    [b-afd<]4
+A    [b-af|d<]4
+B    [b-a|fd<]4
+
+123CDEFGH [r1]16
+
+A   r16
+9A [
+9   @13 @e20 V12 O3 L16
+A   @13 @e20 V9  O3 L16 \1
+9A  [cdeg>]4 [c<ged]4 <
+9A  [ab>ce]4 [aec<b]4 >
+9A  [cdeg>]4 [c<ged]4 <
+9A  [ab>ce]4 [aec<b]4
+9A  [a>cfg]4 [agfc<]4
+9A  [b>dga]4 [bagd<]4
+9A  [a->ce-g]4 [a-ge-c<]4
+9A  [b->dfa]4 [b-afd<]4
+9A ]0
+
+C   r8
+BC [
+B   @3 V13 O7 L4 H10,1,1,2
+C   @3 V11 O7 L4 H10,1,1,2 \1
+BC  c1< b2>d2  c1&    c1
+BC  c1< b2>d2  c1     edc<b
+BC  a1  g2a2   b2.>c  d2<b2>
+BC  c1  e-dce- d2.e-4 f2d2
+BC ]0
+
+DE1 [
+D    @16 V12 L4 O5 H0,1,1,2
+E    @16 V9  L4 O5 H0,1,1,2 \1
+1    @e1 V6  L4 O6 H0,1,1,1
+DE1  c1& c1& c1 dc<b>d
+DE1  c1& c1& c1 edc<b>
+DE1  c1< b2>c2 d1 c2d2
+DE1  e-1 e-dc2 d1&d1
+DE1 ]0
+
+F2 [
+F   @16 V12 L4 O4 H0,1,1,2
+2   @e1 V6  L4 O5 H0,1,1,1
+F2  e1  f2e2&   e2a2& a2gf
+F2  e1  f2e2&   e2a2> c<bag
+F2  a1& a1      g1&   g1
+F2  g1> c<b-a-2 f1    a1
+F2 ]0
+
+G [
+G  @16 V12 L4 O3 H0,1,1,2
+G  g1> d1    c1& c2<b>d<
+G  g1> d1    c1< ab>ce
+G  e1  d2c2< b1  a2b2>
+G  c1  gfe-c d1< b-2f2
+G ]0
+
+H [
+H  @16 V12 L4 O3 H0,1,1,2
+H  c1&  c1< a1&  a1>
+H  c1&  c1< a1&  a1
+H  f1&  f1  g1&  g1
+H  a-1& a-1 b-1& b-1
+H ]0

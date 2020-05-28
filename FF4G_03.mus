@@ -1,0 +1,163 @@
+;[gain=1.0 name=FF4_03 duration=300s fade=5s]
+#opll_mode 0
+#tempo 108
+#title { "Final Fantasy IVより バロン王国 (C)SQUARE ENIX"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc {9=1000}
+;#alloc {c=1000}
+
+;1文字の英文字(A-Z)にマクロのオフセット番号を定義します。
+; a = 10と定義定義した場合場合、以下以下は*20と同意になる。
+; *a10
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset g = 210
+#macro_offset h = 220
+#macro_offset r = 230
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, def }
+@e2  = {1, 0, f0=32 }
+
+@e11 = {3,30, f8=32, 70=128 }
+
+@e25 = {1, 0, f0=16 }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;1239ABCDEFGH [[r1]32]32
+;9A [[r1]32]32
+
+
+;* ストリングス
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {30, 6,15, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0
+             ,10, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1}
+
+9   @15 V13 O6 L16
+1   @e1 V7  O6 L16 \1
+91  d-8<a-8e-8<b-8 f8c8<g8d8
+9   V12 O4 L16
+1   V5  O5 L16
+91  [c2.cd-e-d-    c2.c<b-a-b->]
+
+91 [
+9   O5 L16    H0,1,1,1
+1   O6 L16 \1 H0,1,1,1
+91  [
+91    r4c4f4c4 a-4c4b-4c4 b1& b2.r4
+91  ]
+91  < L8
+91  [
+91    d4.ef+4.e d4c+4<b4>g4> ec16d16egf+4ec ec16d16egf+4e4<
+91  ]
+91 ]0
+
+A   @15 V11 O6 L16
+2   @e1 V5  O6 L16 \1
+A2  r8d-8<a-8e-8<b-8 f8c8<g8
+A   V12 O3 L16
+2   V5  O4 L16
+A2  [a-2.a-b->c<b- a-2.a-g-fg-]
+
+A2 [
+A   O4 L16    H0,1,1,1
+2   O5 L16 \2 H0,1,1,1
+A2  [
+A2    r4c4f4c4 a-4c4b-4c4 b1& b2.r4
+A2  ]
+A2  < L8
+A2  [
+A2    b4.>c+d4.c+< b4a4g4>d4 aa16b16>ced4c<a aa16b16>ced4c4<<
+A2  ]
+A2 ]0
+
+B  r1
+B  [r1]4
+B [
+B  [
+B    @6 V11 O5 L8 Q4
+B    [ra-rgra-rf] Q8 e2.a+16b16>c+8< b4a+16b16>c+8<b4a+16b16>c+8
+B  ]
+B  [
+B    dd16d16dc+d4<b>c+ d4c+erdr<b e2f+2 g2f+2>
+B  ]
+B ]0
+
+C  r1
+C  [r1]4
+C [
+C  [
+C    @6 V11 O5 L8 Q4
+C    rfrfrfre- rfrfrfre- Q8 d2.g+16g+16g+8 g+4g+16g+16g+8g+4g+16g+16g+8
+C  ]
+C  [
+C    bb16b16bab4ga b4a>c+r<brg c2d2 e2d2
+C  ]
+C ]0
+
+D  @13 V12 O4 L8
+D  r1
+D  [crcrcrc<b->]4
+D [
+D  [
+D    [crcrcrc<b->]2 [<b-rb-rb-rb->c+]2
+D  ]
+D  [
+D    [d4r4d4r4] [e4ree4e4]
+D  ]
+D ]0
+
+E  @13 V12 O3 L8
+E  r1
+E  [frfrfrfg-]4
+E [
+E  [
+E    [frfrfrfg-]2 [ererered+]2
+E  ]
+E  [
+E    [g4r4g4r4] [a4raa4a4]
+E  ]
+E ]0
+
+F  *1 @0 @e30 V13 O4 L16 H0,20,0,-20
+F  r1
+F  [[crcccccc]2]4
+F [
+F  [
+F    [[crcccccc]2]4
+F  ]
+F  [
+F    [[crcccccc]2]4
+F  ]
+F ]0
+
+G  @14 @e25 V12 O1 L16 Q1 SO
+G  r1
+G  [[crcccccc]2]4
+G [
+G  [
+G    [[crcccccc]2]4
+G  ]
+G  [
+G    [[crcccccc]2]4
+G  ]
+G ]0

@@ -1,0 +1,93 @@
+;[gain=1.0 name=FF4_09 duration=300s fade=5s]
+#opll_mode 0
+#tempo 140
+#title { "Final Fantasy IVより 勝利のファンファーレ (C)SQUARE ENIX"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc {9=1000}
+;#alloc {c=1000}
+
+;1文字の英文字(A-Z)にマクロのオフセット番号を定義します。
+; a = 10と定義定義した場合場合、以下以下は*20と同意になる。
+; *a10
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 110
+#macro_offset c = 120
+#macro_offset d = 130
+#macro_offset e = 140
+#macro_offset f = 160
+#macro_offset g = 170
+#macro_offset h = 180
+#macro_offset r = 190
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, def }
+
+@e10 = {2, 0, fdcba9876543210 }
+
+@e25 = {1, 0, f0=16 }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {20, 5,13, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1
+             ,10, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0}
+
+;1239ABCDEFGH !
+
+9   @5 V12 O4 L24 H20,1,1,4 Q7
+A   @6 V10 O4 L24 H20,1,1,4 Q7 \1 r24
+9A  ceg>ceg>ceg L12 cccc4<a-4b-4> cr<b-> c2.<
+9A [
+9A  L8 g4f4g4fb-& b-b-a4b-a4a g4f4e4fd& d1
+9A     g4f4g4fb-& b-b-a4b-a4a g4f4g4b->c& c1<
+9A ]0
+
+B   @5 V12 O3 L24 H20,1,1,4 Q7
+C   @6 V10 O3 L24 H20,1,1,4 Q7 \1 r24
+BC  ceg>ceg>ceg< L12 fffe4e-4d<b->f e-rd f2.
+BC [
+BC  L8 e4d4e4df& fff4ff4f e4c4c4c<b-& b-1>
+BC     e4d4e4df& fff4ff4f e4c4e4fa-& a-1
+BC ]0
+
+D   @15 V14 O3 L12 H20,1,1,2 Q7
+D   r4. gab>c4<a-gg-f4 grfg2.>
+D [
+D   L8 c4c4c4cc& ccc4cc4c c4<a4g4af&  f1>
+D      c4c4c4cc& ccc4cc4c c4c4c4de-& e-1
+D ]0
+
+E   @13 V14 O3 L12
+E   r4. cccc4<a-4b-4> cr<g>c2.
+E [
+E   L8 [cg<f>f] [<b->f<f>f] [c<g>]4 < [b-f]4 >
+E   L8 [cg<f>f] [<b->f<f>f] cg<g>fcg<b->f< a->e-<e->e-<a->e-<b->f
+E ]0
+
+F   *1 @0 V15 O3 L12 H0,20,0,-20
+F   r4. ggg grr grr grr grg g24g24 V- [g24]16 V+
+F [
+F   L16 [[grgg]3 gggg]4
+F       [[grgg]3 gggg]4
+F ]0
+
+G   @14 @e25 V12 O1 L12 Q1 SO
+G   r4. ccc crr crr crr crc c24c24 V- [c24]16 V+
+G [
+G   L16 [[crcc]3 cccc]4
+G       [[crcc]3 cccc]4
+G ]0

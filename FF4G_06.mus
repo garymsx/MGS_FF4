@@ -1,0 +1,99 @@
+;[gain=1.0 name=FF4_06 duration=300s fade=5s]
+#opll_mode 0
+#tempo 76
+#title { "Final Fantasy IVより 街のテーマ (C)SQUARE ENIX"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc {9=1000}
+;#alloc {c=1000}
+
+;1文字の英文字(A-Z)にマクロのオフセット番号を定義します。
+; a = 10と定義定義した場合場合、以下以下は*20と同意になる。
+; *a10
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 110
+#macro_offset c = 120
+#macro_offset d = 130
+#macro_offset e = 140
+#macro_offset f = 160
+#macro_offset g = 170
+#macro_offset h = 180
+#macro_offset r = 190
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, def }
+@e2  = {1, 0, f0=32 }
+
+@e11 = {3,30, f8=48, 70=128 }
+
+@e20 = {1, 0, feeddccdcba98 }
+@e25 = {1, 0, f0=16 }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;* ストリングス
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {30, 6,15, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0
+             ,10, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1}
+
+9A [
+9   @3 V13 O6 L8 H30,1,2,3
+A   @7 V11 O6 L8 H31,1,2,3 \1
+9A  e4>c+4<bagf e4.d+16e16f+2  ec+g4f+c+de e4.d16c+16d2
+9A  fefga4gf    f4e2<b>c+      dc+d<ag+4>e<b> d4c+2.
+9A  fefga4gf    f4e4.ea>c      c<bbaaggf+     b1
+9A ]0
+
+BC [
+B   @3 V11 O6 L4 H30,1,2,3
+C   @7 V9  O6 L4 H31,1,2,3 \1
+BC  c+2d2 c+<g+a2 gba+f+       b1
+BC  a2>d2 c+1<    b8a8g+8f+8e2 a1
+BC  a2b2> c1      f+d+<ba      g+1
+BC ]0
+
+E   r16
+DE [
+D   @13 @e20 V13 O4 L8
+E   @13 @e20 V11 O4 L8 \1
+DE  a>c+e4df+a>d<< g+>c+eg+f+2             c+4<b4a+2      b>df+b>d2<<
+DE  a4>def4b4>     c+2 L16 c+<aeaec+<ae L8 f+b>df+g+4.e<  a4.>ea2<
+DE  a4>def4b4>     c2  L16 c<gegec<ge   L8 b>d+f+4<ab>d+4 e<babg+2
+DE ]0
+
+F1 [
+F   @15 V12 O4 L4
+1   @e1 V5  O4 L4 \1 H0,1,2,1
+F1   c+2df  e2f+2 g2f+e d1
+F1   d1     c+1   d2e2  d4c+2.
+F1   d1     d4e2. d+1   e1
+F1 ]0
+
+G2 [
+G   @15 V12 O3 L4
+2   @e1 V5  O3 L4 \1 H0,1,2,1
+G2  a1    g+2a2  b2a+2 b1
+G2  a1&   a1     b2g+2 a1
+G2  a2b2> c1<    b2a2  g+1
+G2 ]0
+
+H3 [
+H   @15 V12 O2 L4
+3   @e1 V5  O2 L4 \1 H0,1,2,1
+H3  a2>d2  c+2d2 c+<ba+f b1>
+H3  d1<    a1    b2>e2<  a1>
+H3  d2<g2> c1<   b1>     e1
+H3 ]0

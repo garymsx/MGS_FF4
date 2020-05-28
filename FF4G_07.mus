@@ -1,0 +1,193 @@
+;[gain=1.0 name=FF4_07 duration=300s fade=5s]
+#opll_mode 0
+#tempo 140
+#title { "Final Fantasy IVより メインテーマ (C)SQUARE ENIX"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc {9=1000}
+;#alloc {c=1000}
+
+;1文字の英文字(A-Z)にマクロのオフセット番号を定義します。
+; a = 10と定義定義した場合場合、以下以下は*20と同意になる。
+; *a10
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset g = 210
+#macro_offset h = 220
+#macro_offset r = 230
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, fd }
+@e2  = {1, 0, fd0=40 }
+
+@e10 = {2, 0, fdb975310 }
+
+@e25 = {1, 0, f0=16 }
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;* ストリングス
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {30, 6,15, 0, 0, 0, 1, 2, 1, 1, 0, 0, 0
+             , 6, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1}
+
+;チャンネルマスク
+;123 [[r1]32]32
+;9A  [[r1]32]32
+;BCD [[r1]32]32
+;DE  [[r1]32]32
+;FGH [[r1]32]32
+
+;1239ABCDEFG r2
+
+;A   r8
+9A  r1 r1
+9A [
+9A [
+9    @3 V13 O5 L8 H10,1,1,2
+A    @7 V11 O5 L8 H10,1,1,2 \1
+9A   a2>c2 e2g2
+9A   f+1 d2&ddde f2g4f4 e4c4<a4>c4
+9A   [d1& d2.c4]
+9A   c1& c2.r4
+9A ]
+9A  d4f4e4f4     a4g4f4g4     e2c2&       c2.r4
+9A  d4f4e4f4     a4g4f4g4     e1&         e2.r4
+9A  e4g4f+4g4    b4a4g4a4     f+2d2&      d2.r4
+9A  e4g4f+4g4    b4a4g4a4     a4>c4<b4>c4 e4d4c4d4<
+9A  b2..>c16c+16 d2..c+16c16< b1&         b2.r4
+9A ]0
+
+B   r1 r1
+B [
+B [
+B   @15 V11 O4 L4 H0,1,1,2
+B   e1& e2a4g4
+B   f+1& f+1 f1 e2a4g4
+B   a+2>d2 c2<a+2 g+2>c2< a+2g+2
+B   g1& g1 
+B ]
+B  a+1> d1  e2>c2<  b2a2<
+B  a+1> d1  e2>c2<  b2a2
+B  c1   e1  d2b2    a2f+2
+B  c1   e1  f1      e1
+B  e1   d1  e1&     e1
+B ]0
+
+C   r1 r1
+C [
+C [
+C   @15 V11 O4 L4 H0,1,1,2
+C   c1& c1
+C   c1& c2<b4a4 a2.b4> c1
+C   d1& d1 c1& c2.d4
+C   e1& e1
+C ]
+C  d1   f1>  c2e2   d2c2<
+C  d1   f1>  c2e2   d2c2<
+C  e1   g1   f+1    b1
+C  e1   g1   a1&    a1
+C  g+1  b1   a1     g+1
+C ]0
+
+D   r1 r1
+D [
+D [
+D   @15 V12 O2 L4 H0,1,1,2
+D   a1& a1>
+D   d1& d1< f2.g4 a1
+D   g1& g1 f1& f1 >
+D   c1& c1 <
+D ]
+D  a+1&  a+1   a1&   a1
+D  a+1&  a+1   a1&   a1>
+D  c1&   c1<   b1&   b1>
+D  c1&   c1<   f1&   f1
+D  e1    g1    eeee  eeee
+D ]0
+
+E   @2 V13 O2 L4
+E   [aaaa]
+E [
+E [
+E   [aaaa]>
+E   [dddd]< fffg aaaa
+E   [gggg] [ffff] >
+E   [cccc]<
+E ]
+E  a+1&  a+1   a1&   a1
+E  a+1&  a+1   a1&   a1>
+E  c1&   c1<   b1&   b1>
+E  c1&   c1<   f1&   f1
+E  e1    g1    eeee  eeee
+E ]0
+
+2    r16
+1    @e2 V11 O3 L16
+2    @e2 V9  O3 L16 \1
+12   a>cea<bg>dg<a>cea<b>dgb cea>c<<b>dgbcea>c<dgb>d
+12 [
+12 [
+1    @e2 V11 O3 L16
+2    @e2 V9  O3 L16 \1
+12   [a>cea<]8
+12   [a>df+a<]8 [a>cfa<]4 [g>ceg<]4
+12   [gb->dg<]8 [fg+>cf<]8
+12   [eg>ce<]8
+12 ]
+12  [fa+>df a+>dfa+> d<a+fd< a+fd<a+] [ea>ce a>cea> c<aec< aec<a]
+12  [fa+>df a+>dfa+> d<a+fd< a+fd<a+] [ea>ce a>cea> c<aec< aec<a]
+12  [eg>ce g>ceg> c<gec< gec<g]       [df+b>d f+b>df+ bf+d<b f+d<bf]
+12  [eg>ce g>ceg> c<gec< gec<g]       [fa>cf a>cfa> c<afc< afc<a]
+12  eg+b>e g+b>eg+ bg+e<b g+e<bg+     dgb>d gb>dg bgd<b gd<bg
+12  eab>e ab>ea bae<b ae<ba           eg+b>d eg+b>d ed<bg+ ed<bg+
+12 ]0
+
+*F0 = {V14 O3 Q1}
+*F1 = {V13 O4 Q8}
+
+F   *1 @0 @e30 V13 O3 L8 Q1 SO H0,20,0,-20
+F   r1 r1
+F [
+F [
+F   [*F0 gg rr *F1 cr r *F0 g gr gr *F1 cr r4]6
+F ]
+F  [*F0 gg rr *F1 cr r *F0 g gr gr *F1 cr r4]10
+F ]0
+
+*G0 = {V10 Q8}
+*G1 = {V12 Q1}
+
+G   @14 @e25 V12 O1 L8 Q1 SO
+G   r1 r1
+G [
+G [
+G   [*G0 cc rr *G1 cr r *G0 c cr cr *G1 cr r4]6
+G ]
+G  [*G0 cc rr *G1 cr r *G0 c cr cr *G1 cr r4]10
+G ]0
+
+3   @e10 V10 L16 O1
+3   r1 r1
+3 [
+3 [
+3   [[c8cc]4]12
+3 ]
+3  [[c8cc]4]20
+3 ]0
